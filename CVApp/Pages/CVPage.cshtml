@@ -1,0 +1,60 @@
+﻿@page
+@model CVApp.Pages.CVPageModel
+@{
+    ViewData["Title"] = "CV Page";
+}
+<h1>Please fill the following form</h1>
+<form asp-page="CVPage" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="input.FirstName"></label>
+        <input class="form-control" asp-for="input.FirstName" />
+    </div>
+    <div class="form-group">
+        <label asp-for="input.LastName"></label>
+        <input class="form-control" asp-for="input.LastName" />
+    </div>
+    <div class="form-group">
+        <label asp-for="input.date"></label>
+        <input class="form-control" asp-for="input.date" />
+    </div>
+    <div class="form-group">
+        <label asp-for="input.SelectedNationalities"></label>
+        <select asp-items="Model.Nationalities" asp-for="input.SelectedNationalities"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="input.GenderRadio"></label>
+        <input id="male" type="radio" value="m"  asp-for="input.GenderRadio" />Male
+        <input id="female" type="radio" value="f" asp-for="input.GenderRadio" />Female
+    </div>
+    <div class="form-group">
+        <label asp-for="input.SkillsChecked"></label>
+        @foreach (SelectListItem skill in Model.Skills)
+        {
+            <input name="input.SkillsChecked" type="checkbox" value="@skill.Value" /> @skill.Text
+        }
+    </div>
+    <div class="form-group">
+        <label asp-for="input.Email"></label>
+        <input class="form-control" asp-for="input.Email" />
+    </div>
+    <div class="form-group">
+        <label asp-for="input.EmailConfirmation"></label>
+        <input class="form-control" asp-for="input.EmailConfirmation" />
+    </div>
+    <div class="form-group">
+        <label asp-for="input.Password"></label>
+        <input class="form-control" asp-for="input.Password" />
+    </div>
+    <div >
+        <label asp-for="verfication1"></label>
+        <input asp-for="verfication1" /> +
+        <input  asp-for="verfication2" /> =
+        <input  asp-for="verficationResult" />
+    </div>
+    <div class="form-group">
+        <label asp-for="FormFile"></label>
+        <input asp-for="FormFile" type="file"/>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <div asp-validation-summary="All"></div>
+</form>

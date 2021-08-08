@@ -1,0 +1,47 @@
+﻿@page
+@model CVApp.Pages.SummaryModel
+@{
+    ViewData["Title"] = "Summary Page";
+}
+<h2>Your information got submitted successfully</h2>
+<div class="container">
+
+    <h4>Summary</h4>
+    <ul>
+        <li>Name : @Model.Input.FirstName  @Model.Input.LastName</li>
+        <li>Date of submission: @Model.Input.date</li>
+        <li>Gender: @Model.Input.GenderRadio</li>
+        @if (Model.Input.SkillsChecked.Count() > 1)
+        {
+            <li>
+                Skills:<ol>
+                    @foreach (string skill in Model.Input.SkillsChecked)
+                    {
+                        <li>@skill</li>
+                    }
+                </ol>
+            </li>
+        }
+        else
+        {
+            <li>Skills: @Model.Input.SkillsChecked.First()</li>
+        }
+        @if (Model.Input.SelectedNationalities.Count() > 1)
+        {
+            <li>
+                Nationalities:<ol>
+                    @foreach (string nationality in Model.Input.SelectedNationalities)
+                    {
+                        <li>@nationality</li>
+                    }
+                </ol>
+            </li>
+        }
+        else
+        {
+            <li>Nationality: @Model.Input.SelectedNationalities.First()</li>
+        }
+        <li>Email: @Model.Input.Email</li>
+        <li>File: @Model.Input.FormImagePath</li>
+    </ul>
+</div>
